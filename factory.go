@@ -22,13 +22,13 @@ type schemas map[string]schemaKinds
 
 var allSchemas = schemas{
 	KindGroup: schemaKinds{
-		TypeObject:reflect.TypeOf(objectGroup{}),
-		TypeArray:reflect.TypeOf(arrayGroup{}),
+		TypeObject:reflect.TypeOf(objectGroupSchema{}),
+		TypeArray:reflect.TypeOf(arrayGroupSchema{}),
 	},
 	KindField: schemaKinds{
-		FieldTypeText:reflect.TypeOf(textField{}),
-		FieldTypeSelect:reflect.TypeOf(selectField{}),
-		FieldTypeOption:reflect.TypeOf(optionField{}),
+		FieldTypeText:reflect.TypeOf(textFieldSchema{}),
+		FieldTypeSelect:reflect.TypeOf(selectFieldSchema{}),
+		FieldTypeOption:reflect.TypeOf(optionFieldSchema{}),
 	},
 }
 
@@ -41,6 +41,9 @@ func (schemaFactory *schemaFactory) Make() Schema {
 		rSchema.FieldByName("Kind").Set(reflect.ValueOf(schemaFactory.Kind))
 		rSchema.FieldByName("Type").Set(reflect.ValueOf(schemaFactory.schema.Type))
 		rSchema.FieldByName("Name").Set(reflect.ValueOf(schemaFactory.schema.Name))
+		rSchema.FieldByName("Validations").Set(reflect.ValueOf([]string{"required"}))
+
+
 
 		return (rSchema).Interface().(Schema)
 	}

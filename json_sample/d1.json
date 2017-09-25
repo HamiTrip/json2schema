@@ -1,0 +1,52 @@
+{
+    "backoffice_base_url": "https://hipotrip.ir/",
+    "domain": "hipotrip.ir",
+    "exceptions_webhook": "https://chat.hamitrip.com/hooks/nj6EtoZbe9C3xQpW3/wGtLWZ5WNZhv2GSvKp7o2XL5CuFeSwhCisbkF6qauYZd7PwQ",
+    "frontend_base_url": "https://hipotrip.ir/",
+    "frontend_title": "sdf",
+    "nsp": [
+        {
+            "email": {
+                "email_en_issued_template_id": "2200981",
+                "email_en_register_template_id": "2192987",
+                "email_en_reset_password_template_id": "2192381",
+                "email_en_ticket_pending_template_id": "2201741",
+                "email_fa_issued_template_id": "2224822",
+                "email_fa_register_template_id": "2158762",
+                "email_fa_reset_password_template_id": "2224482",
+                "email_fa_ticket_pending_template_id": "2224823"
+            },
+            "push": {
+                "push_en_issued_notification_body": "You may download your tickets in your panel",
+                "push_en_issued_notification_title": "Ticket Issued",
+                "push_fa_issued_notification_body": "شما میتوانید بلیط خود را از پنل کاربری دریافت نمایید",
+                "push_fa_issued_notification_title": "بلیط صادر شد"
+            },
+            "sms": {
+                "sms_en_issued_text": "Thanks for purchasing\n For more information please check your dashboard: %s \n %s",
+                "sms_en_register_text": "Hi \n Welcome to HopoTrip world.\n Your password is: %s \n Happytrip.ir",
+                "sms_fa_issued_text": "با تشکر از خرید شما\n برای دریافت اطلاعات بیشتر به پنل کاربری خود مراجعه نمایید: %s \n %s",
+                "sms_fa_register_text": "سلام \n به دنیای HipoTrip خوش آمدید.\n کلمه عبور شما : %s \n  HipoTrip.ir"
+            }
+        }
+    ],
+    "payment_gateways": [
+        {
+            "currency": "irr",
+            "gateway": "parsian",
+            "merchant_id": "VJIo5iURFJfk0l3J3Rs2",
+            "password": "123",
+            "username": "321"
+        },
+        {
+            "currency": "eur",
+            "gateway": "asd",
+            "merchant_id": "VJIo5iURFJfk0l3J3Rs2",
+            "password": "254",
+            "username": "43"
+        }
+    ],
+    "support_email": "info@360trip.ir",
+    "support_webhook": "https://chat.hamitrip.com/hooks/F6R4gwdEWQ28muDXp/dLMPntNp4qjb5ar2cF6WL3dXRGL44wehw974GaYHRPrRrZQv",
+    "x_domain": "hamitrip:hipotrip"
+}

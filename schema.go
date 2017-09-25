@@ -31,14 +31,6 @@ type language struct {
 
 type Validations []string
 
-type group struct {
-	schema
-}
-
-type field struct {
-	schema
-}
-
 func (schema schema) ToMap() map[string]interface{} {
 	var js, err = json.Marshal(schema)
 	if err != nil {
@@ -50,4 +42,5 @@ func (schema schema) ToMap() map[string]interface{} {
 		panic(err)
 	}
 	return res.(map[string]interface{})
+	// shayad beshe akhare kar ba Cast ya Convert be type asly dataye kamelo bekeshim birun!!
 }

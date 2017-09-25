@@ -1,30 +1,50 @@
 package json2schema
 
-type arrayGroup struct {
+type group struct {
+	schema
+}
+
+type field struct {
+	schema
+}
+
+type ArrayGroupSchema interface {
+	SetChildrenSchema(Schema) ArrayGroupSchema
+}
+
+type arrayGroupSchema struct {
 	group
 	ChildrenSchema Schema `json:"children_schema"`
 }
 
-type objectGroup struct {
+func (arrayGroupSchema arrayGroupSchema) SetChildrenSchema(schema Schema) ArrayGroupSchema {
+	arrayGroupSchema.ChildrenSchema = schema
+	return arrayGroupSchema
+}
+
+type ObjectGroupSchema interface {
+	AppendChild(...Schema) ObjectGroupSchema
+}
+
+type objectGroupSchema struct {
 	group
 	Children []Schema `json:"children"`
 }
 
-type textField struct {
+func (objectGroupSchema objectGroupSchema) AppendChild(data ...Schema) ObjectGroupSchema {
+	objectGroupSchema.Children = append(objectGroupSchema.Children, data...)
+	return objectGroupSchema
+}
+
+type textFieldSchema struct {
 	field
 }
 
-type optionField struct {
+type optionFieldSchema struct {
 	field
 }
 
-type selectField struct {
+type selectFieldSchema struct {
 	field
-	Options []optionField `json:"options"`
-}
-
-func (selectField selectField) ToMap() map[string]interface{} {
-	return map[string]interface{}{
-		"salam":"khubi?",
-	}
+	Options []optionFieldSchema `json:"options"`
 }

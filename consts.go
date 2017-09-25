@@ -9,4 +9,5 @@ const (
 	FieldTypeSelect = "select"
 	FieldTypeOption = "option"
 	VarRoot         = "root"
+	VarArrayRoot    = "array_root"
 )
