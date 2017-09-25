@@ -5,23 +5,11 @@ import (
 )
 
 type SchemaFactory interface {
-	Type(string) nameNeededSchema
+	Make() Schema
 }
 
 type schemaFactory struct {
-	schemaKinds
-	kind string
-}
-
-func (schemaFactory *schemaFactory)Type(tName string) nameNeededSchema {
-	if s, ok := schemaFactory.schemaKinds[typeName(tName)]; ok {
-		var res = reflect.New(s).Interface().(inFactorySchema)
-		res.SetKind(schemaFactory.kind)
-		res.SetType(tName)
-		return res.(nameNeededSchema)
-	} else {
-		panic("invalid schema")
-	}
+	schema
 }
 
 type typeName string
@@ -44,41 +32,16 @@ var allSchemas = schemas{
 	},
 }
 
-func Kind(kind string) SchemaFactory {
-	/*var schemaFactory = new(schemaFactory)
-	schemaFactory.schemaKind = kind*/
-	return &schemaFactory{
-		schemaKinds: allSchemas[kind],
-		kind:kind,
+func (schemaFactory *schemaFactory) Make() Schema {
+	if sType, ok := allSchemas[schemaFactory.Kind][typeName(schemaFactory.schema.Type)]; !ok {
+		panic("invalid type or kind!")
+	} else {
+		var rSchema = reflect.Indirect(reflect.New(sType))
+
+		rSchema.FieldByName("Kind").Set(reflect.ValueOf(schemaFactory.Kind))
+		rSchema.FieldByName("Type").Set(reflect.ValueOf(schemaFactory.schema.Type))
+		rSchema.FieldByName("Name").Set(reflect.ValueOf(schemaFactory.schema.Name))
+
+		return (rSchema).Interface().(Schema)
 	}
 }
-
-/*
-func ArrayGroup(name string) *arrayGroup {
-	var schema = new(arrayGroup)
-	schema.Name = name
-	schema.Type = TypeArray
-	schema.Kind = KindGroup
-
-	return schema
-}
-
-func ObjectGroup(name string) *arrayGroup {
-	var schema = new(arrayGroup)
-	schema.Name = name
-	schema.Type = TypeObject
-	schema.Kind = KindGroup
-	schema.Validations = []string{}
-	return schema
-}
-
-func Field(name, t string) *arrayGroup {
-	var schema = new(arrayGroup)
-	schema.Name = name
-	schema.Type = t
-	schema.Kind = KindField
-	schema.Validations = []string{"required"}
-	return schema
-}
-*/
-

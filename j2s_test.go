@@ -4,6 +4,7 @@ import (
 	"testing"
 	"encoding/json"
 	"fmt"
+	"hami/ums/base/log"
 )
 
 func TestSchema(t *testing.T) {
@@ -14,7 +15,9 @@ func TestSchema(t *testing.T) {
 	fmt.Println(string(js))*/
 
 
-	var ag = Kind(KindField).Type(FieldTypeSelect).SetName(VarRoot).Out()
+	var ag = Kind(KindField).Type(FieldTypeSelect).Name(VarRoot).Make()
 	var js, _ = json.Marshal(ag)
 	fmt.Println(string(js))
+
+	log.Logf(log.WithoutColor,"string(js): type: '%T' value: %v",ag,string(js))
 }

@@ -23,7 +23,7 @@ type selectField struct {
 	Options []optionField `json:"options"`
 }
 
-func (selectField *selectField) Out() map[string]interface{} {
+func (selectField selectField) ToMap() map[string]interface{} {
 	return map[string]interface{}{
 		"salam":"khubi?",
 	}
