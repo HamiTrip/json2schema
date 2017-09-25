@@ -18,7 +18,7 @@ func TestMakeSchema(t *testing.T) {
 
 	//var ag = Kind(KindField).Type(FieldTypeSelect).Name(VarRoot).Make()
 
-	data, e := ioutil.ReadFile("/home/sabloger/code/go/sandbox/src/github.com/hamitrip/json2schema/json_sample/d1.json")
+	data, e := ioutil.ReadFile("/home/sabloger/code/go/sandbox/src/github.com/hamitrip/json2schema/json_sample/d_hotel.json")
 	if e != nil {
 		t.Errorf("File error: %v\n", e)
 	}

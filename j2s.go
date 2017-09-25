@@ -31,7 +31,9 @@ func makeObject(name string, data map[string]interface{}) Schema {
 
 func makeArray(name string, data []interface{}) Schema {
 	var schema = Kind(KindGroup).Type(TypeArray).Name(name).Make()
-	schema = schema.(ArrayGroupSchema).SetChildrenSchema(hub(VarArrayRoot, data[0])).(Schema)
+	if(len(data) > 0) {
+		schema = schema.(ArrayGroupSchema).SetChildrenSchema(hub(VarArrayRoot, data[0])).(Schema)
+	}
 	return schema
 }
 

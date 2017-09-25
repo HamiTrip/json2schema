@@ -2,6 +2,8 @@ package json2schema
 
 import (
 	"reflect"
+	"strings"
+	"fmt"
 )
 
 type SchemaFactory interface {
@@ -41,9 +43,16 @@ func (schemaFactory *schemaFactory) Make() Schema {
 		rSchema.FieldByName("Kind").Set(reflect.ValueOf(schemaFactory.Kind))
 		rSchema.FieldByName("Type").Set(reflect.ValueOf(schemaFactory.schema.Type))
 		rSchema.FieldByName("Name").Set(reflect.ValueOf(schemaFactory.schema.Name))
-		rSchema.FieldByName("Validations").Set(reflect.ValueOf([]string{"required"}))
+		rSchema.FieldByName("Validations").Set(reflect.ValueOf([]string{}))//"required"
+
+		var enTitle = strings.Replace(schemaFactory.schema.Name, "_" , " " , -1)
+		enTitle = strings.Title(enTitle)
+
+		var enPlaceholder = fmt.Sprintf("Enter %s completely...",enTitle)
 
 
+		rSchema.FieldByName("Attributes").FieldByName("Title").FieldByName("En").Set(reflect.ValueOf(enTitle))
+		rSchema.FieldByName("Attributes").FieldByName("Placeholder").FieldByName("En").Set(reflect.ValueOf(enPlaceholder))
 
 		return (rSchema).Interface().(Schema)
 	}
