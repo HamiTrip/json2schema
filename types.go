@@ -44,7 +44,7 @@ type optionFieldSchema struct {
 	field
 }
 
-type selectFieldSchema struct {
+type selectFieldSchema struct { //TODO:: Options ro bayad explode kone.
 	field
 	Options []optionFieldSchema `json:"options"`
 }
