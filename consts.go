@@ -1,5 +1,8 @@
 package json2schema
 
+/*
+Json to schema constants
+ */
 const (
 	TypeArray       = "array"
 	TypeObject      = "object"

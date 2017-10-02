@@ -4,31 +4,37 @@ import (
 	"encoding/json"
 )
 
+/*
+Schema interface
+ */
 type Schema interface {
 	ToMap() map[string]interface{}
 }
 
 type schema struct {
-	Attributes basicAttributes `json:"attributes"`
+	Attributes  basicAttributes `json:"attributes"`
 	Validations `json:"validations"`
-	Kind       string `json:"kind"`
-	Name       string `json:"name"`
-	Type       string `json:"type"`
+	Kind        string `json:"kind"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
 }
 
 type basicAttributes struct {
-	Title       struct {
-			    language
-		    } `json:"title"`
+	Title struct {
+		language
+	} `json:"title"`
 	Placeholder struct {
-			    language
-		    } `json:"placeholder"`
+		language
+	} `json:"placeholder"`
 }
 
 type language struct {
 	En string `json:"en"`
 }
 
+/*
+Validations is list of validator conditions
+ */
 type Validations []string
 
 func (schema schema) ToMap() map[string]interface{} {
