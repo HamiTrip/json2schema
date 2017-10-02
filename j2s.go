@@ -3,7 +3,9 @@ package json2schema
 //TODO:: Make it interactive!! Ask Titles and validations per each field!!!
 // ->Of course it only can used in cmd mode in this case!!
 
-
+/*
+MakeSchema is base starter method
+ */
 func MakeSchema(jsonData interface{}) Schema {
 	//panic(fmt.Sprintf("Excepted types was 'map[string]interface{}' and '[]interface{}' got: %T", jsonData))
 	var root = hub(VarRoot, jsonData)

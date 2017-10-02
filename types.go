@@ -8,6 +8,9 @@ type field struct {
 	schema
 }
 
+/*
+ArrayGroupSchema is interface of array group schemas
+ */
 type ArrayGroupSchema interface {
 	SetChildrenSchema(Schema) ArrayGroupSchema
 }
@@ -22,6 +25,9 @@ func (arrayGroupSchema arrayGroupSchema) SetChildrenSchema(schema Schema) ArrayG
 	return arrayGroupSchema
 }
 
+/*
+ObjectGroupSchema is interface of object group schemas
+ */
 type ObjectGroupSchema interface {
 	AppendChild(...Schema) ObjectGroupSchema
 }

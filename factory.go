@@ -6,6 +6,9 @@ import (
 	"fmt"
 )
 
+/*
+SchemaFactory is factory
+ */
 type SchemaFactory interface {
 	Make() Schema
 }
@@ -43,7 +46,7 @@ func (schemaFactory *schemaFactory) Make() Schema {
 		rSchema.FieldByName("Kind").Set(reflect.ValueOf(schemaFactory.Kind))
 		rSchema.FieldByName("Type").Set(reflect.ValueOf(schemaFactory.schema.Type))
 		rSchema.FieldByName("Name").Set(reflect.ValueOf(schemaFactory.schema.Name))
-		rSchema.FieldByName("Validations").Set(reflect.ValueOf([]string{}))//"required"
+		rSchema.FieldByName("Validations").Set(reflect.ValueOf([]string{"required"}))//"required"
 
 		var enTitle = strings.Replace(schemaFactory.schema.Name, "_" , " " , -1)
 		enTitle = strings.Title(enTitle)
